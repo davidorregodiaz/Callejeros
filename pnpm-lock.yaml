@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@formity/react':
+        specifier: ^1.0.0
+        version: 1.0.0(react@19.2.0)
       next:
         specifier: 16.0.7
         version: 16.0.7(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -17,6 +20,12 @@ importers:
       react-dom:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
+      react-hook-form:
+        specifier: ^7.68.0
+        version: 7.68.0(react@19.2.0)
+      zod:
+        specifier: ^4.1.13
+        version: 4.1.13
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -165,6 +174,14 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@formity/react@1.0.0':
+    resolution: {integrity: sha512-L/PMgit/K43VgIcBWsxx3lk17U6InyIdKuGo/TymFfpYnkk7iotCwYI5pxF3HRG+51NCBVr+sJiDtAmZgyackA==}
+    peerDependencies:
+      react: '>=16'
+
+  '@formity/system@1.0.0':
+    resolution: {integrity: sha512-BoKv2RvPm4WWir4Xmxb3cUyZtyXbnSqhxXvlScQUoXDbX57CUuveickpb+FqgdoIjzXed3FGZSES3o2rwsd3FQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1629,6 +1646,12 @@ packages:
     peerDependencies:
       react: ^19.2.0
 
+  react-hook-form@7.68.0:
+    resolution: {integrity: sha512-oNN3fjrZ/Xo40SWlHf1yCjlMK417JxoSJVUXQjGdvdRCU07NTFei1i1f8ApUAts+IVh14e4EdakeLEA+BEAs/Q==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -2078,6 +2101,13 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
+
+  '@formity/react@1.0.0(react@19.2.0)':
+    dependencies:
+      '@formity/system': 1.0.0
+      react: 19.2.0
+
+  '@formity/system@1.0.0': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -3611,6 +3641,10 @@ snapshots:
     dependencies:
       react: 19.2.0
       scheduler: 0.27.0
+
+  react-hook-form@7.68.0(react@19.2.0):
+    dependencies:
+      react: 19.2.0
 
   react-is@16.13.1: {}
 
