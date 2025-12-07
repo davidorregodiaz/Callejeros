@@ -19,8 +19,27 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme {
+  --color-primary: oklch(0.774 0.163 60);
+  --color-text-light: oklch(0.321 0 0);
+  --color-text-primary: oklch(0.774 0.163 60);
+  --color-accent: oklch(0.745 0.158 152);
+  --color-background-light: oklch(0.977 0.003 146);
+  --color-border-dark: oklch(0.386 0.058 153);
+  --color-border-primary: oklch(0.774 0.163 60);
+  --color-border-light: oklch(0.906 0.033 156);
+
+  --animate-fadeIn: fadeIn 0.5s ease-in-out forwards;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@view-transition {
+  navigation: auto;
 }

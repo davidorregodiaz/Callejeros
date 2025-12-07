@@ -1,11 +1,7 @@
-import React from 'react'
+import LoginView from "@/src/features/auth/login/presentation/views/LoginView";
 
 const Login = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <LoginView />;
+};
 
-export default Login
+export default Login;

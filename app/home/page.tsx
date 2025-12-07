@@ -1,11 +1,9 @@
-import React from 'react'
+import HomeView from '@/src/features/home/presentation/views/HomeView'
 
-const Home = () => {
+export default async function Home() {
+
   return (
-    <div>
-      
-    </div>
+    <HomeView />
   )
 }
 
-export default Home
