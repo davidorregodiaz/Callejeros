@@ -18,7 +18,6 @@ export const UserLoggedIn = ({
   user?: User;
   navigateTo: (route: string) => void;
 }) => {
-
   return (
     <div className="flex items-center gap-4">
       <div className="relative group border-none">
@@ -77,7 +76,7 @@ export const UserLoggedIn = ({
             </a>
             <hr className="border-t border-border-light dark:border-border-dark my-1" />
             <button
-              onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
+              onClick={() => signOut({ callbackUrl: process.env.NEXTAUTH_URL })}
               className="flex items-center gap-3 rounded px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-500/10 dark:hover:bg-red-400/20 transition-colors"
               role="menuitem"
             >
