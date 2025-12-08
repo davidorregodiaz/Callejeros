@@ -1,15 +1,23 @@
-type User = {
-    id: string;
-    imageUrl: string;
-    email: string;
-    role: string;
-} & {
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-}
+import PersonIcon from "@mui/icons-material/PersonRounded";
+import FavoriteIcon from "@mui/icons-material/FavoriteRounded";
+import DescriptionIcon from "@mui/icons-material/DescriptionRounded";
+import LogoutIcon from "@mui/icons-material/LogoutRounded";
+import { signOut } from "next-auth/react";
 
-export const UserLoggedIn = ({ user, navigateTo }: { user?: User, navigateTo: (route: string) => void }) => {
+export type User = {
+  id: string;
+  imageUrl: string;
+  email: string;
+  role: string;
+};
+
+export const UserLoggedIn = ({
+  user,
+  navigateTo,
+}: {
+  user?: User;
+  navigateTo: (route: string) => void;
+}) => {
 
   return (
     <div className="flex items-center gap-4">
@@ -35,22 +43,20 @@ export const UserLoggedIn = ({ user, navigateTo }: { user?: User, navigateTo: (r
         >
           <div className="py-2 px-2 bg-white rounded" role="none">
             <div className="px-3 py-2">
-              <p className="text-sm font-bold text-text-light dark:text-text-dark">
+              {/* <p className="text-sm font-bold text-text-light dark:text-text-dark">
                 {user?.name}
-              </p>
+              </p> */}
               <p className="text-xs text-text-light/60 dark:text-text-dark/60">
                 {user?.email}
               </p>
             </div>
             <hr className="border-t border-border-light dark:border-border-dark my-1" />
             <button
-              onClick={() => navigateTo('/user/general')}
+              onClick={() => navigateTo("/user/general")}
               className="flex items-center gap-3 rounded px-3 py-2 text-sm text-text-light dark:text-text-dark hover:bg-primary/20 hover:text-primary transition-colors"
               role="menuitem"
             >
-              <span className="material-symbols-outlined text-base">
-                person
-              </span>
+              <PersonIcon fontSize="medium" className="text-base" />
               Mi Perfil
             </button>
             <a
@@ -58,9 +64,7 @@ export const UserLoggedIn = ({ user, navigateTo }: { user?: User, navigateTo: (r
               href="#"
               role="menuitem"
             >
-              <span className="material-symbols-outlined text-base">
-                favorite
-              </span>
+              <FavoriteIcon fontSize="medium" className="text-base" />
               Mis Favoritos
             </a>
             <a
@@ -68,20 +72,16 @@ export const UserLoggedIn = ({ user, navigateTo }: { user?: User, navigateTo: (r
               href="#"
               role="menuitem"
             >
-              <span className="material-symbols-outlined text-base">
-                description
-              </span>
+              <DescriptionIcon fontSize="medium" className="text-base" />
               Mis Postulaciones
             </a>
             <hr className="border-t border-border-light dark:border-border-dark my-1" />
             <button
-              // onClick={logout}
+              onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
               className="flex items-center gap-3 rounded px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-500/10 dark:hover:bg-red-400/20 transition-colors"
               role="menuitem"
             >
-              <span className="material-symbols-outlined text-base">
-                logout
-              </span>
+              <LogoutIcon fontSize="medium" className="text-base" />
               Cerrar Sesión
             </button>
           </div>

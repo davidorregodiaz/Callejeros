@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
-import MainLayout from "@/src/features/common/layouts/MainLayout";
-import Head from "next/head";
 import "./globals.css";
 
 // const geistSans = Geist({
@@ -26,17 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=optional"
-          rel="stylesheet"
-        />
-      </Head>
-      <body>
-        <MainLayout>
-          {children}
-        </MainLayout>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

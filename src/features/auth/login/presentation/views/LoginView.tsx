@@ -34,6 +34,7 @@ const LoginView = () => {
     });
 
     if (result?.error) {
+      console.log(result.error);
       //setError(result.error);
     } else {
       //setError(null);
@@ -81,7 +82,7 @@ const LoginView = () => {
                       </svg>
                     </div>
                     <h2 className="text-2xl font-bold leading-tight tracking-[-0.015em]">
-                      AdoptaAmor
+                      Callejeros
                     </h2>
                   </div>
                   <h3 className="text-3xl font-bold">Inicia Sesión</h3>

@@ -1,20 +1,26 @@
-"use client"
+"use client";
 import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
-import { UserLoggedIn } from "../presentation/components/UserLoggedIn";
+import { User, UserLoggedIn } from "../presentation/components/UserLoggedIn";
 
 export function Navbar({ session }: { session: Session | null }) {
-
   const router = useRouter();
 
   const navigateTo = (route: string) => {
     router.push(route);
-  }
+  };
+
+  const user: User = {
+    id: session?.user.id ?? "",
+    email: session?.user.email ?? "",
+    imageUrl: session?.user.imageUrl ?? "",
+    role: session?.user.role ?? "",
+  };
 
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-4 md:px-10 py-3">
       <button
-        onClick={() => navigateTo('/')}
+        onClick={() => navigateTo("/")}
         className="flex items-center gap-4 text-text-light dark:text-text-dark"
       >
         <div className="size-6 text-primary">
@@ -37,7 +43,7 @@ export function Navbar({ session }: { session: Session | null }) {
       <div className="hidden md:flex flex-1 justify-end gap-8">
         <div className="flex items-center gap-9">
           <button
-            onClick={() => navigateTo('/adoptions')}
+            onClick={() => navigateTo("/adoptions")}
             className="text-sm font-medium leading-normal hover:text-primary"
           >
             Adoptar
@@ -63,10 +69,10 @@ export function Navbar({ session }: { session: Session | null }) {
         </div>
 
         {session ? (
-          <UserLoggedIn user={session.user} navigateTo={navigateTo}/>
+          <UserLoggedIn user={user} navigateTo={navigateTo} />
         ) : (
           <button
-            onClick={() => navigateTo('/auth/login')}
+            onClick={() => navigateTo("/auth/login")}
             className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]"
           >
             <span className="truncate">Inicia Sesion</span>
