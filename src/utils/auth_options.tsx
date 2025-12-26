@@ -52,7 +52,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.sub = user.id;
         token.email = user.email;
-        token.role = user.role;
+        token.role = user.roles;
         token.name = user.name;
         token.imageUrl = user.imageUrl;
         token.accessToken = (user as User).accessToken;
@@ -64,7 +64,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.sub as string;
         session.user.email = token.email;
         session.user.name = token.name;
-        session.user.role = token.role;
+        session.user.roles = token.roles;
         session.user.imageUrl = token.imageUrl as string;
         (session as Session).accessToken = token.accessToken;
       }

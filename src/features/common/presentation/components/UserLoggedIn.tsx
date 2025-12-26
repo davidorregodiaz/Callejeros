@@ -3,13 +3,7 @@ import FavoriteIcon from "@mui/icons-material/FavoriteRounded";
 import DescriptionIcon from "@mui/icons-material/DescriptionRounded";
 import LogoutIcon from "@mui/icons-material/LogoutRounded";
 import { signOut } from "next-auth/react";
-
-export type User = {
-  id: string;
-  imageUrl: string;
-  email: string;
-  role: string;
-};
+import { User } from "@/src/types/user";
 
 export const UserLoggedIn = ({
   user,

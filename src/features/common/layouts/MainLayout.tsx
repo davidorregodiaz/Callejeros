@@ -1,11 +1,24 @@
 import { ReactNode } from "react";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
-import { getServerSession } from "next-auth";
+import { getServerSession, User } from "next-auth";
 import { authOptions } from "@/src/utils/auth_options";
 
-export default async function MainLayout({ children }: { children: ReactNode }) {
+export default async function MainLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const session = await getServerSession(authOptions);
+
+  const user: User = {
+    id: session?.user.id ?? "",
+    email: session?.user.email ?? "",
+    imageUrl: session?.user.imageUrl ?? "",
+    roles: session?.user.roles ?? [],
+    accessToken: session?.accessToken ?? "",
+    name: session?.user.name ?? "",
+  };
 
   return (
     <div className="font-display bg-white dark:bg-background-dark text-text-light dark:text-text-dark">
@@ -13,11 +26,9 @@ export default async function MainLayout({ children }: { children: ReactNode }) 
         <div className="layout-container flex h-full grow flex-col">
           <div className="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
             <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-              <Navbar session={session}/>
+              <Navbar user={user} />
 
-              <main className="grow">
-                {children}
-              </main>
+              <main className="grow">{children}</main>
 
               <Footer />
             </div>

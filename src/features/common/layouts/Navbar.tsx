@@ -1,20 +1,13 @@
 "use client";
-import { Session } from "next-auth";
 import { useRouter } from "next/navigation";
-import { User, UserLoggedIn } from "../presentation/components/UserLoggedIn";
+import { UserLoggedIn } from "../presentation/components/UserLoggedIn";
+import { User } from "next-auth";
 
-export function Navbar({ session }: { session: Session | null }) {
+export function Navbar({ user }: { user: User | null }) {
   const router = useRouter();
 
   const navigateTo = (route: string) => {
     router.push(route);
-  };
-
-  const user: User = {
-    id: session?.user.id ?? "",
-    email: session?.user.email ?? "",
-    imageUrl: session?.user.imageUrl ?? "",
-    role: session?.user.role ?? "",
   };
 
   return (
@@ -68,7 +61,7 @@ export function Navbar({ session }: { session: Session | null }) {
           </a>
         </div>
 
-        {session ? (
+        {user ? (
           <UserLoggedIn user={user} navigateTo={navigateTo} />
         ) : (
           <button
