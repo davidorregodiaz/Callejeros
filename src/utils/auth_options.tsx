@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          let url = process.env.NEXT_PUBLIC_API_URL + "auth/login";
+          let url = process.env.BACKEND_API_URL + "/auth/login";
           if (!url || url.trim() === "") {
             url = "http://localhost:5239/api/auth/login";
           }

@@ -1,20 +1,14 @@
-"use client"
+"use client";
+import { AnimalViewModel } from "@/src/types/adoption";
 import { useRouter } from "next/navigation";
 
-type PetProps = {
-  id: string;
-  name: string;
-  description: string;
-  principalImageUrl: string;
-}
+export function PetCard({ pet }: { pet: AnimalViewModel }) {
+  const { id, name, description, principalImageUrl } = pet;
+  const router = useRouter();
 
-export function PetCard({ id, name, description, principalImageUrl }: PetProps) {
-
-    const router = useRouter();
-
-    const navigateTo = (route: string) => {
-      router.push(route);
-    }
+  const navigateTo = (route: string) => {
+    router.push(route);
+  };
 
   return (
     <div className="flex flex-col bg-white  rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">

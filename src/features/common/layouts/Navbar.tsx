@@ -43,7 +43,7 @@ export function Navbar({ session }: { session: Session | null }) {
       <div className="hidden md:flex flex-1 justify-end gap-8">
         <div className="flex items-center gap-9">
           <button
-            onClick={() => navigateTo("/adoptions")}
+            onClick={() => navigateTo("/animals")}
             className="text-sm font-medium leading-normal hover:text-primary"
           >
             Adoptar
