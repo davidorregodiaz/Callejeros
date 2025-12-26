@@ -7,14 +7,14 @@ export async function GET() {
     const response = await fetch(url);
 
     if (!response.ok) {
-      NextResponse.json(
+      return NextResponse.json(
         {
           message: "Couldn't fetch adoptions, something went wrong",
           code: response.status,
         },
         {
           status: response.status,
-        },
+        }
       );
     }
 
@@ -25,14 +25,14 @@ export async function GET() {
     const { data } = await response.json();
     return NextResponse.json(data, { status: response.status });
   } catch (error) {
-    NextResponse.json(
+    return NextResponse.json(
       {
         message: "Something went wrong",
         detail: String(error),
       },
       {
         status: 500,
-      },
+      }
     );
   }
 }
