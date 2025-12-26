@@ -9,7 +9,7 @@ const AnimalDetailsView = ({
   session,
 }: {
   animal: AnimalViewModel;
-  session: Session;
+  session: Session | null;
 }) => {
   const [adoptionForm, setAdoptionForm] = useState(false);
   const personalityLabels = {
