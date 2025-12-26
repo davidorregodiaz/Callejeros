@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import ErrorToast from "@/src/features/common/presentation/components/ErrorToast";
-import { ErrorInfo } from "react-dom/client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AdoptionDto, adoptionSchema } from "../schemas/adoption.schema";
 
 const AdoptionRequestFormModal = ({
   onClose,
@@ -13,7 +15,6 @@ const AdoptionRequestFormModal = ({
   animalId: string;
   onClose: () => void;
 }) => {
-  const [comments, setComments] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -26,8 +27,18 @@ const AdoptionRequestFormModal = ({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  const handleSubmit = async (e: KeyboardEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AdoptionDto>({
+    resolver: zodResolver(adoptionSchema),
+    defaultValues: {
+      comment: "",
+    },
+  });
+
+  const onSubmit = async (data: AdoptionDto) => {
     if (isLoading) return;
     setIsLoading(true);
     try {
@@ -35,7 +46,10 @@ const AdoptionRequestFormModal = ({
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ comments, animalId }),
+        body: JSON.stringify({
+          comment: data.comment,
+          animalId,
+        }),
       });
 
       if (res && res.ok === false) {
@@ -130,7 +144,7 @@ const AdoptionRequestFormModal = ({
                 ) : (
                   /* Form state */
                   <form
-                    onSubmit={handleSubmit}
+                    onSubmit={handleSubmit(onSubmit)}
                     className="flex flex-col gap-5 w-full"
                   >
                     <label className="flex flex-col text-left">
@@ -138,11 +152,9 @@ const AdoptionRequestFormModal = ({
                         {`¿Por qué eres el hogar perfecto para ${animalName}?`}
                       </p>
                       <textarea
-                        name="comments"
-                        value={comments}
-                        onChange={(e) => setComments(e.target.value)}
                         className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d1b12]  focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#cfe7d7]  bg-background-light   min-h-36 placeholder:text-[#4c9a66]  p-[15px] text-base font-normal leading-normal transition-shadow"
                         placeholder="Cuéntanos un poco sobre ti, tu hogar y por qué quieres adoptarlo."
+                        {...register("comment")}
                       />
                     </label>
 
